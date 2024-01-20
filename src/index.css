@@ -18,3 +18,7 @@ body {
 .btn{
   background-color:  #02ccfe;
 }
+.progress_points{
+  display: flex;
+  justify-content: space-between;
+}

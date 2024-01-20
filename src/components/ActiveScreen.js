@@ -1,6 +1,7 @@
 import React from "react";
 import Options from "./Options";
 import Button from "./Button";
+import Progress from "./Progress";
 
 const ActiveScreen = ({
   questions,
@@ -8,13 +9,14 @@ const ActiveScreen = ({
   answer,
   numQuestions,
   currentQuestion,
+  points,
+  maxPoints
 }) => {
-  //   console.log(questions);
+    // console.log(questions);
   return (
     <div>
-      <p>
-        {currentQuestion + 1} / {numQuestions}
-      </p>
+    <Progress maxPoints={maxPoints} points={points} currentQuestion={currentQuestion} numQuestions={numQuestions} />
+      
       <h5 className='mb-4'>{questions.question}</h5>
       {questions.options.map((option, index) => (
         <Options

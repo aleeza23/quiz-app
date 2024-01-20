@@ -13,6 +13,7 @@ const initialState = {
   status: "loading",
   currentQuestion: 0,
   answer: null,
+  points: 0,
 };
 
 //reducer function
@@ -40,9 +41,15 @@ const reducer = (state, action) => {
       };
 
     case "answer":
+      const isCorrectAnswer = state.question[state.currentQuestion];
+      // console.log(isCorrectAnswer);
       return {
         ...state,
         answer: payload,
+        points:
+          isCorrectAnswer.correctOption === payload
+            ? state.points + isCorrectAnswer.points
+            : state.points,
       };
 
     case "nextQuestion":
@@ -57,6 +64,13 @@ const reducer = (state, action) => {
         ...state,
         status: "finished",
       };
+
+      case "reStart": 
+      return{
+        ...initialState,
+        question : state.question,
+        status : "ready"
+      } 
     default:
       throw new Error("Unknown action");
   }
@@ -64,8 +78,10 @@ const reducer = (state, action) => {
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const {status, question, currentQuestion, answer} = state;
+  const {status, question, currentQuestion, answer, points} = state;
+
   const numQuestions = question?.length;
+  const maxPoints = question.reduce((prev, acc) => prev + acc.points, 0);
 
   //fetching data
   useEffect(() => {
@@ -88,9 +104,13 @@ function App() {
             questions={question[currentQuestion]}
             numQuestions={numQuestions}
             currentQuestion={currentQuestion}
+            points={points}
+            maxPoints={maxPoints}
           />
         )}
-        {status === "finished" && <FinishedScreen />}
+        {status === "finished" && (
+          <FinishedScreen points={points} maxPoints={maxPoints} dispatch={dispatch} />
+        )}
       </Main>
     </>
   );

@@ -14,6 +14,7 @@ const initialState = {
   currentQuestion: 0,
   answer: null,
   points: 0,
+  remainingTime: null,
 };
 
 //reducer function
@@ -26,6 +27,7 @@ const reducer = (state, action) => {
         ...state,
         question: payload,
         status: "ready",
+        remainingTime : state.question.length * 10
       };
 
     case "dataFailed":
@@ -65,12 +67,19 @@ const reducer = (state, action) => {
         status: "finished",
       };
 
-      case "reStart": 
-      return{
+    case "reStart":
+      return {
         ...initialState,
-        question : state.question,
-        status : "ready"
-      } 
+        question: state.question,
+        status: "ready",
+      };
+
+    case "timer":
+      return {
+        ...state,
+        remainingTime: state.remainingTime - 1,
+        status: state.remainingTime === 0 ? "finished" : state.status,
+      };
     default:
       throw new Error("Unknown action");
   }
@@ -78,7 +87,8 @@ const reducer = (state, action) => {
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const {status, question, currentQuestion, answer, points} = state;
+  const {status, question, currentQuestion, answer, points, remainingTime} =
+    state;
 
   const numQuestions = question?.length;
   const maxPoints = question.reduce((prev, acc) => prev + acc.points, 0);
@@ -106,10 +116,15 @@ function App() {
             currentQuestion={currentQuestion}
             points={points}
             maxPoints={maxPoints}
+            remainingTime={remainingTime}
           />
         )}
         {status === "finished" && (
-          <FinishedScreen points={points} maxPoints={maxPoints} dispatch={dispatch} />
+          <FinishedScreen
+            points={points}
+            maxPoints={maxPoints}
+            dispatch={dispatch}
+          />
         )}
       </Main>
     </>

@@ -2,6 +2,7 @@ import React from "react";
 import Options from "./Options";
 import Button from "./Button";
 import Progress from "./Progress";
+import Timer from "./Timer";
 
 const ActiveScreen = ({
   questions,
@@ -10,11 +11,13 @@ const ActiveScreen = ({
   numQuestions,
   currentQuestion,
   points,
-  maxPoints
+  maxPoints,
+  remainingTime
 }) => {
     // console.log(questions);
   return (
     <div>
+    <Timer remainingTime={remainingTime} dispatch={dispatch} /> 
     <Progress maxPoints={maxPoints} points={points} currentQuestion={currentQuestion} numQuestions={numQuestions} />
       
       <h5 className='mb-4'>{questions.question}</h5>

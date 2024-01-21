@@ -1,3 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=swap");
+
 body {
   background-color: #020035;
   color: #fff;
@@ -5,6 +8,7 @@ body {
   justify-content: center;
   align-items: center;
   height: 100dvh;
+  font-family: "Poppins", sans-serif;
 }
 .container{
   width: 100vw;
@@ -15,10 +19,33 @@ body {
   justify-content: center;
   align-items: center;
 }
+.heading{
+  font-family: "Nunito", "sans-serif";
+}
+.hero_img{
+  animation: bounce normal 2s ease-in-out;
+}
+@keyframes bounce {
+  0%{
+    rotate: 0deg;
+    transform: translateY(-20%);
+  }
+  50% {
+    rotate: 360deg;
+    transform: translateY(0)
+  }
+  100%{
+    rotate: 0deg;
+  }
+}
 .btn{
   background-color:  #02ccfe;
 }
 .progress_points{
   display: flex;
   justify-content: space-between;
+}
+.finish{
+  background-color: #fff;
+  color: #020035;
 }

@@ -5,7 +5,7 @@ const Button = ({children, onClick, className}) => {
     <>
       <button
         onClick={onClick}
-        className={` ${className}  btn rounded border-0 py-2`}
+        className={` ${className} fw-bold  btn rounded border-0 py-2`}
       >
         {children}
       </button>

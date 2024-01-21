@@ -4,7 +4,7 @@ const Progress = ({currentQuestion, numQuestions, points, maxPoints}) => {
   return (
     <>
       <progress
-        className='progress w-100'
+        className='progress  w-100 bg-danger'
         max={numQuestions}
         value={currentQuestion}
       />

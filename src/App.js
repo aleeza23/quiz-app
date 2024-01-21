@@ -27,7 +27,7 @@ const reducer = (state, action) => {
         ...state,
         question: payload,
         status: "ready",
-        remainingTime : state.question.length * 10
+        remainingTime : state.question.length * 30
       };
 
     case "dataFailed":

@@ -11,6 +11,7 @@
     "react": "^18.2.0",
     "react-bootstrap": "^2.10.0",
     "react-dom": "^18.2.0",
+    "react-loader-spinner": "^6.1.6",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
@@ -19,7 +20,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "server" : "json-server --watch data/questions.json --port 8000"
+    "server": "json-server --watch data/questions.json --port 8000"
   },
   "eslintConfig": {
     "extends": [

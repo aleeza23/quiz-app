@@ -5,7 +5,7 @@ const Main = ({children}) => {
     <>
       <div className='container  '>
         <div className='row'>
-          <div className='col-12 col-md-6 col-lg-4  mx-auto rounded  shadow py-5 px-lg-2' >{children}</div>
+          <div className='col-12 col-md-6 col-lg-4  mx-auto rounded  shadow py-5' >{children}</div>
         </div>
       </div>
     </>
